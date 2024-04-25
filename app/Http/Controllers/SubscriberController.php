@@ -55,7 +55,7 @@ class SubscriberController extends Controller
             } else {
                 Subscriber::create(['email' => $email, 'status' => $type]);
             }
-            // Cache::forget($email);
+            Cache::forget($email);
         
             return response()->json(['message' => 'Email ' . ($type ? 'subscribed' : 'unsubscribed')]);
         } else {
