@@ -6,7 +6,6 @@
 </head>
 <body>
     <h1>Weather today</h1>
-    <h2>{{$data['title']}}</h2>
-    <p>{{$data['detail']}}</p>
+    {{$data['current']['last_updated']}}
 </body>
 </html>

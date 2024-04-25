@@ -16,3 +16,5 @@ Route::post('/confirm', [SubscriberController::class, 'sendConfirmCode']);
 Route::post('/subscribe', [SubscriberController::class, 'confirmSubscribe']);
 
 Route::post('/unsubscribe', [SubscriberController::class, 'confirmUnsubscribe']);
+
+Route::get('/test', [WeatherController::class, 'dwdw']); 

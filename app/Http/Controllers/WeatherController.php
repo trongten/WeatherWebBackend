@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WeatherMail;
+use App\Models\Subscriber;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class WeatherController extends Controller
 {
     public function getWeather(Request $request)
-    {
+    { 
         $apiKey = env('WEATHER_API_KEY');
         $apiURL = env('WEATHER_API_URL');
         // Default country is Vietnam
