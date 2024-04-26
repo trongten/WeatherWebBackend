@@ -25,7 +25,7 @@ Deploy: https://trongphan5301.click/
     ```
     http://localhost:8081
     ```
-4. Schedule task
+4. Schedule task(test)
    ```
    docker-compose exec app php artisan schedule:run
    ```
