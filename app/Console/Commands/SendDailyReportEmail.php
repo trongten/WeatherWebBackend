@@ -39,7 +39,7 @@ class SendDailyReportEmail extends Command
             $response = $client->get($url);
             $responseData = $response->getBody()->getContents();
             $data = json_decode($responseData, true);
-            $listEmails = Subscriber::all()->pluck('email')->toArray();
+            $listEmails = Subscriber::query()->where(['status',1])->pluck('email')->toArray();
             foreach ($listEmails as $email) {
                 Mail::to($email)->send(new WeatherMail($data));
             } 
