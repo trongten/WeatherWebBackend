@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\WeatherMail;
-use App\Models\Subscriber;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class WeatherController extends Controller
 {
@@ -19,8 +15,9 @@ class WeatherController extends Controller
         $apiURL = env('WEATHER_API_URL');
         // Default country is Vietnam
         $country = $request->has('country') ? $request->input('country') : "vietnam";
+        $day = $request->has('day') ? $request->input('day') : 6;
         $currentDate = Carbon::now()->format('Y-m-d');
-        $infoWeatherString = strtolower('weather-'.$currentDate ."-". $country);
+        $infoWeatherString = strtolower('weather-'.$currentDate ."-". $country."-". $day);
 
         if(Cache::has($infoWeatherString)) {
             // Get the data from the cache
@@ -28,7 +25,7 @@ class WeatherController extends Controller
             return response()->json($data);
         }else{
             // Get the data from the API
-            $url = "http://$apiURL?key=$apiKey&q=$country&days=4&aqi=no&alerts=no";
+            $url = "http://$apiURL?key=$apiKey&q=$country&days=$day&aqi=no&alerts=no";
             $client = new Client();
             
             try {
