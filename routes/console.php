@@ -9,5 +9,5 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::command('email:send-daily-report')->daily()->at('6:00')->runInBackground();
+Schedule::command('app:send-daily-report-email')->daily()->at('6:00')->runInBackground();
 // Schedule::command('app:send-daily-report-email')->everyFiveSeconds()->runInBackground();
